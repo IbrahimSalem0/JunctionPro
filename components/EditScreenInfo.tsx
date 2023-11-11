@@ -1,77 +1,88 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import React from "react";
+import { StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
 
-import Colors from '../constants/Colors';
-import { ExternalLink } from './ExternalLink';
-import { MonoText } from './StyledText';
-import { Text, View } from './Themed';
+import Colors from "../constants/Colors";
+import { ExternalLink } from "./ExternalLink";
+import { MonoText } from "./StyledText";
+import { Text, View } from "./Themed";
+import { useNavigation } from "expo-router";
+// import { useNavigation } from "@react-navigation/native";
 
+const Section = ({ title, imageUrl, onPress }) => (
+  <TouchableOpacity onPress={onPress} style={styles.sectionContainer}>
+    <ImageBackground
+      source={{ uri: imageUrl }}
+      style={styles.backgroundImage}
+      resizeMode="contian"
+    >
+      <View style={styles.sectionContent}>
+        <Text style={styles.sectionTitle}>{title}</Text>
+        {/* Add your arrow icon here */}
+      </View>
+    </ImageBackground>
+  </TouchableOpacity>
+);
 
-export default function EditScreenInfo({ path }: { path: string }) {
+export default function EditScreenInfo({ path }) {
+  const navigation = useNavigation();
+  const navigateToSection = (sectionName) => {
+    // Add your navigation logic here
+    // For example, you can use navigation.navigate to go to the section details page
+    navigation.navigate("(tabs)");
+    console.log(`Navigating to ${sectionName} details`);
+  };
+
   return (
-    <View>
-      <View style={styles.getStartedContainer}>
-        <Text
-          style={styles.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)">
-          Open up the code for this screen:
-        </Text>
-
-        <View
-          style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-          darkColor="rgba(255,255,255,0.05)"
-          lightColor="rgba(0,0,0,0.05)">
-          <MonoText>{path}</MonoText>
-        </View>
-
-        <Text
-          style={styles.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)">
-          Change any of the text, save the file, and your app will automatically update.
-        </Text>
-      </View>
-
-      <View style={styles.helpContainer}>
-        <ExternalLink
-          style={styles.helpLink}
-          href="https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet">
-          <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
-            Tap here if your app doesn't automatically update after making changes
-          </Text>
-        </ExternalLink>
-      </View>
-    </View>
+    <ImageBackground
+      source={require("./background-noise.jpg")}
+      style={styles.backgroundImage}
+    >
+      <Section
+        title="Events"
+        imageUrl="https://assets-global.website-files.com/6266854f3c3d183d9ce92dc8/651bcb6672058d46fb4d4411_EE7A0447-p-2000.jpg"
+        onPress={() => navigateToSection("Section 1")}
+      />
+      <Section
+        title=""
+        imageUrl="https://img.etimg.com/thumb/msid-60916721,width-300,height-225,imgsize-170135,,resizemode-75/.jpg"
+        onPress={() => navigateToSection("ListCareers")}
+      />
+      <Section
+        title=""
+        imageUrl="https://wallpapers.com/images/featured-full/meme-background-u260cqghqox0mz3d.jpg"
+        onPress={() => navigateToSection("Section 3")}
+      />
+      <Section
+        title="Development"
+        imageUrl="https://fastly.picsum.photos/id/24/4855/1803.jpg?hmac=ICVhP1pUXDLXaTkgwDJinSUS59UWalMxf4SOIWb9Ui4"
+        onPress={() => navigateToSection("Section 3")}
+      />
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+  container: {
+    flex: 1,
   },
-  homeScreenFilename: {
-    marginVertical: 7,
+  sectionContainer: {
+    flex: 1,
+    height: 200,
   },
-  codeHighlightContainer: {
-    borderRadius: 3,
-    paddingHorizontal: 4,
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
-  getStartedText: {
-    fontSize: 17,
-    lineHeight: 24,
-    textAlign: 'center',
+  sectionContent: {
+    // alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Adjust the opacity as needed
+    padding: 20,
   },
-  helpContainer: {
-    marginTop: 15,
-    marginHorizontal: 20,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    textAlign: 'center',
+  sectionTitle: {
+    fontSize: 24,
+    color: "white",
+    fontWeight: "700",
   },
 });
