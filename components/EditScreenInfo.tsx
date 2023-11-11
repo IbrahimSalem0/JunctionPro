@@ -28,7 +28,7 @@ export default function EditScreenInfo({ path }) {
   const navigateToSection = (sectionName) => {
     // Add your navigation logic here
     // For example, you can use navigation.navigate to go to the section details page
-    navigation.navigate("(tabs)");
+    navigation.navigate(sectionName);
     console.log(`Navigating to ${sectionName} details`);
   };
 
@@ -40,17 +40,17 @@ export default function EditScreenInfo({ path }) {
       <Section
         title="Events"
         imageUrl="https://assets-global.website-files.com/6266854f3c3d183d9ce92dc8/651bcb6672058d46fb4d4411_EE7A0447-p-2000.jpg"
-        onPress={() => navigateToSection("Section 1")}
+        onPress={() => navigateToSection("Events")}
       />
       <Section
         title=""
         imageUrl="https://img.etimg.com/thumb/msid-60916721,width-300,height-225,imgsize-170135,,resizemode-75/.jpg"
-        onPress={() => navigateToSection("ListCareers")}
+        onPress={() => navigateToSection("listCareers")}
       />
       <Section
         title=""
         imageUrl="https://wallpapers.com/images/featured-full/meme-background-u260cqghqox0mz3d.jpg"
-        onPress={() => navigateToSection("Section 3")}
+        onPress={() => navigateToSection("Memes")}
       />
       <Section
         title="Development"
