@@ -1,7 +1,7 @@
 // ListCareers.tsx
 
 import React from 'react';
-import { StyleSheet, FlatList, View, Text } from 'react-native';
+import { StyleSheet, FlatList, View, Text, SafeAreaView } from 'react-native';
 
 const techJobsData = [
   { id: '1', title: 'Software Engineer' },
@@ -12,7 +12,7 @@ const techJobsData = [
 
 const ListCareers: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Tech Jobs</Text>
       <FlatList
         data={techJobsData}
@@ -23,7 +23,7 @@ const ListCareers: React.FC = () => {
           </View>
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20,
+    color:'red'
   },
   item: {
     backgroundColor: '#f9c2ff',
